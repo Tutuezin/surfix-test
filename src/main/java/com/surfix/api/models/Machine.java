@@ -35,20 +35,20 @@ public class Machine {
     private List<Nic> nics = new ArrayList<>();
 
     public Machine(MachineDTO req) {
-        this.name = req.getName();
-        this.memory = req.getMemory();
-        this.vcpu = req.getVcpu();
-        this.state = req.getState();
-        this.disks = req.getDisks();
-        this.nics = req.getNics();
+        this.name = req.name();
+        this.memory = req.memory();
+        this.vcpu = req.vcpu();
+        this.state = req.state();
+        this.disks = req.disks();
+        this.nics = req.nics();
 
     }
 
-    public void addDisk(Disk disk){
+    public void addDisk(Disk disk) {
         disks.add(disk);
     }
 
-    public void addNic(Nic nic){
+    public void addNic(Nic nic) {
         nics.add(nic);
     }
 
