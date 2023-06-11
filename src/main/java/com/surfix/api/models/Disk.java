@@ -20,4 +20,14 @@ public class Disk {
   @JoinColumn(name = "machineId")
   private Machine machine;
 
+  public Integer incrementDisk(Integer incrementSize) {
+    size += incrementSize;
+    return size;
+  }
+
+  public Integer decrementDisk(Integer decrementSize) {
+    size -= decrementSize;
+    return size;
+  }
+
 }
