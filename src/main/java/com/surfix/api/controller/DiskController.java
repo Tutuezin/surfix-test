@@ -1,15 +1,10 @@
 package com.surfix.api.controller;
 
+import com.surfix.api.models.Machine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.surfix.api.dto.DiskDTODecrement;
 import com.surfix.api.dto.DiskDTOIncrement;
@@ -17,20 +12,19 @@ import com.surfix.api.models.Disk;
 import com.surfix.api.service.DiskService;
 
 import jakarta.validation.constraints.Null;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/disk")
 
 public class DiskController {
   @Autowired
   private DiskService diskService;
-
   @PostMapping("/{machineId}")
-  public ResponseEntity<Null> addDisk(@PathVariable Long machineId, @RequestBody Disk req) {
+  public ResponseEntity<Object> addDisk(@PathVariable Long machineId, @RequestBody Disk req) {
 
     diskService.create(machineId, req);
 
-    return ResponseEntity.status(HttpStatus.CREATED).body(null);
+    return ResponseEntity.status(HttpStatus.CREATED).body(req);
 
   }
 
@@ -44,11 +38,11 @@ public class DiskController {
   }
 
   @PutMapping("/{diskId}/increment")
-  public ResponseEntity<Null> updateDisk(@PathVariable Long diskId, @RequestBody DiskDTOIncrement req) {
+  public ResponseEntity<Object> updateDisk(@PathVariable Long diskId, @RequestBody DiskDTOIncrement req) {
 
     diskService.increment(diskId, req);
 
-    return ResponseEntity.status(HttpStatus.OK).body(null);
+    return ResponseEntity.status(HttpStatus.OK).body(req);
 
   }
 

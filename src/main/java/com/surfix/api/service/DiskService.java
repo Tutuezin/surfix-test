@@ -25,7 +25,7 @@ public class DiskService {
     req.setMachine(machine);
     diskRepository.save(req);
     machine.addDisk(req);
-    machineRepository.save(machine);
+
 
   }
 

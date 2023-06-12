@@ -47,4 +47,10 @@ public class MachineService {
         return machineRepository.save(createMachine);
     }
 
+    public void updateMachine(Long machineId) {
+        Machine machine = machineRepository.findById(machineId).orElseThrow();
+
+        machine.setState(!machine.getState());
+        machineRepository.save(machine);
+    }
 }
